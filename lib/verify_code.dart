@@ -6,7 +6,7 @@ import 'package:phone_authentication/home_screen.dart';
 class VerifyPhone extends StatefulWidget {
   final String verificationId;
 
-  VerifyPhone({Key? key, required this.verificationId}) : super(key: key);
+  const VerifyPhone({Key? key, required this.verificationId}) : super(key: key);
 
   @override
   State<VerifyPhone> createState() => _VerifyPhoneState();
@@ -20,7 +20,7 @@ class _VerifyPhoneState extends State<VerifyPhone> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Verify Phone Number"),
+        title: const Text("Verify Phone Number"),
       ),
       body: Column(
         children: [
@@ -32,7 +32,7 @@ class _VerifyPhoneState extends State<VerifyPhone> {
             child: TextFormField(
               keyboardType: TextInputType.number,
               controller: phoneNumberController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: "6 digit code",
               ),
             ),
@@ -53,18 +53,36 @@ class _VerifyPhoneState extends State<VerifyPhone> {
               try {
                 await auth.signInWithCredential(credential);
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Homepage()));
+                    MaterialPageRoute(builder: (context) => const Homepage()));
               } catch (e) {
                 setState(() {
                   loading = false;
                 });
-                CupertinoAlertDialog(
-                  title: Text("Invalid code"),
-                  content: Text("Input valid code"),
-                );
+                //
+                showCupertinoDialog(
+                    barrierDismissible: true,
+                    context: context,
+                    builder: (context) {
+                      return Center(
+                        child: CupertinoAlertDialog(
+                          title: Text("Invalid code"),
+                          content: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                height: 200,
+                                width: 200,
+                                child: Text(
+                                    "Put the valid code sent to your phone"),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    });
               }
             },
-            child: Text("Verify"),
+            child: const Text("Verify"),
           )
         ],
       ),
