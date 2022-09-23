@@ -1,10 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:flutter/material.dart';
 import 'package:phone_authentication/verify_code.dart';
 
+String selectedCountry = "";
+
 class SignInWithPhoneNumber extends StatefulWidget {
-  const SignInWithPhoneNumber({Key? key}) : super(key: key);
+  const SignInWithPhoneNumber({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<SignInWithPhoneNumber> createState() => _SignInWithPhoneNumberState();
