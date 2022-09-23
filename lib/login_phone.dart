@@ -1,3 +1,4 @@
+import 'package:country_picker/country_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class SignInWithPhoneNumber extends StatefulWidget {
 }
 
 class _SignInWithPhoneNumberState extends State<SignInWithPhoneNumber> {
+  String countryCode = "";
   @override
   //
   final phoneNumberController = TextEditingController();
@@ -29,6 +31,38 @@ class _SignInWithPhoneNumberState extends State<SignInWithPhoneNumber> {
       body: Column(
         children: [
           SizedBox(
+            height: 30,
+          ),
+          Center(
+            child: TextButton(
+                onPressed: () {
+                  showCountryPicker(
+                      context: context,
+                      showPhoneCode: true,
+                      countryListTheme: CountryListThemeData(
+                          borderRadius:
+                              BorderRadius.only(topLeft: Radius.circular(10)),
+                          inputDecoration: InputDecoration(
+                            hintText: 'Start typing to sear',
+                            labelText: 'Search ',
+                          )),
+                      favorite: ['PK'],
+                      onSelect: (Country value) {
+                        print(value.countryCode.toString());
+                        print("+" + value.phoneCode.toString());
+
+                        countryCode = value.phoneCode.toString();
+
+                        setState(() {});
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SignInWithPhoneNumber()));
+                      });
+                },
+                child: Text('Tap')),
+          ),
+          SizedBox(
             height: 60,
           ),
           Padding(
@@ -37,7 +71,7 @@ class _SignInWithPhoneNumberState extends State<SignInWithPhoneNumber> {
               controller: phoneNumberController,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
-                hintText: "+92 xxx xxxxxxx",
+                hintText: " ${"+" + countryCode}",
               ),
             ),
           ),
