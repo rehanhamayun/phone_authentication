@@ -2,7 +2,7 @@ import 'package:country_picker/country_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
-import 'package:phone_authentication/verify_code.dart';
+import 'package:phone_authentication/phone_verification_signIn/verify_code.dart';
 
 String selectedCountry = "";
 
