@@ -1,4 +1,6 @@
-import 'dart:html';
+//
+// import 'dart:html'; //
+// this line was causing all the mess.
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +15,7 @@ class AddPost extends StatefulWidget {
 class _AddPostState extends State<AddPost> {
   final postController = TextEditingController();
   bool loading = false;
-  final dataBaseRef = FirebaseDatabase.instance.ref("Rehan");
+  final dataBaseRef = FirebaseDatabase.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +42,15 @@ class _AddPostState extends State<AddPost> {
             height: 10,
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              setState(() {
+                loading = true;
+              });
+              dataBaseRef
+                  .ref('Rehan')
+                  .child('1')
+                  .set(postController.text.toString());
+            },
             child: Container(
               height: 50,
               width: 100,
@@ -48,9 +58,11 @@ class _AddPostState extends State<AddPost> {
                 color: Colors.amber,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: Text(
-                "Add post",
-                style: TextStyle(color: Colors.white),
+              child: const Center(
+                child: Text(
+                  "Add post",
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ),
           ),
