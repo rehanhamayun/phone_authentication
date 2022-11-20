@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:phone_authentication/database/add_post.dart';
+import 'package:phone_authentication/database/fetch_data.dart';
+import 'package:phone_authentication/phone_verification_signIn/login_phone.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: AddPost(),
+      home: SignInWithPhoneNumber(),
     );
   }
 }

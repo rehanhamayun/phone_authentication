@@ -69,7 +69,6 @@ class _SignInWithPhoneNumberState extends State<SignInWithPhoneNumber> {
             padding: const EdgeInsets.all(20.0),
             child: TextFormField(
               controller: phoneNumberController,
-              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 hintText: " ${"+" + countryCode}",
               ),

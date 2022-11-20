@@ -47,8 +47,8 @@ class _AddPostState extends State<AddPost> {
                 loading = true;
               });
               dataBaseRef
-                  .ref('Rehan')
-                  .child('1')
+                  .ref('Rehan'.toString())
+                  .child('1'.toString())
                   .set(postController.text.toString());
             },
             child: Container(
